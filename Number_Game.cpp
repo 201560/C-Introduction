@@ -1,4 +1,3 @@
-
 #include <iostream>
 using namespace std;
 int main() {
@@ -18,8 +17,12 @@ int main() {
                                 cout << "Correct!" << endl;
                                 play = 0;
                         }
-                        if (number != guess) {
-                                cout << "Incorrect" << endl << "Do you want to guess again? (Enter 1 for yes and 0 for no)" << endl;
+                        if (number >  guess) {
+                                cout << "Incorrect.  The number is greater than your guess." << endl << "Do you want to guess again? (Enter $
+                                cin >> play;
+                        }
+                        if (number < guess) {
+                                cout << "Incorrect.  The number is less than your guess." << endl << "Do you want to guess again? (Enter 1 f$
                                 cin >> play;
                         }
                 }
@@ -27,4 +30,3 @@ int main() {
                 cin >> new_game;
         }
         return 0;
-}
