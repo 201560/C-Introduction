@@ -10,7 +10,7 @@ int main () {
 	for (int i=0; i < classes; i++) {
 		cout << "Enter the class level. (Class number " << i+1 << ") (AP+ = advanced placement, AP = advanced placement, H = honors, CP = college prep/career prep)" << endl;
 		cin >> levels[i];
-		cout << "Enter the letter grade recieved in that class level."  << endl;
+		cout << "Enter the letter grade recieved in that class level (use capital letters)."  << endl;
 		cin >> grades[i];
 	}
 	float total = 0;
