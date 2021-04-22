@@ -15,15 +15,20 @@ int main () {
 	if (type == 0) {
 		cout << "For each class, please input the level and letter grade recieved." << endl << "Enter AP+ for advanced placement plus classes, AP for advanced placement classes, H for honors classes, CP for college prep and career prep classes." << endl;
 		cout << "How many classes do you want to enter?" << endl;
-		int classes = 0;		
+		int classes = 0;
 		cin >> classes;
 		string levels[classes];
 		string grades[classes];
 		for (int i=0; i < classes; i++) {
-			cout << "Enter the class level. (Class number " << i+1 << ") (AP+ = advanced placement, AP = advanced placement, H = honors, CP = college prep/career prep)" << endl;
-			cin >> levels[i];
-			cout << "Enter the letter grade recieved in that class level (use capital letters)."  << endl;
-			cin >> grades[i];
+			while (levels[i] != "AP+" and levels[i] != "AP" and levels[i] != "H" and levels[i] != "CP" or grades[i] != "A" and grades[i] != "B" and grades[i] != "C" and grades[i] != "D" and grades[i] != "F") { 
+				cout << "Enter the class level. (Class number " << i+1 << ") (AP+ = advanced placement, AP = advanced placement, H = honors, CP = college prep/career prep)" << endl;
+				cin >> levels[i];
+				cout << "Enter the letter grade recieved in that class level (use capital letters)."  << endl;
+				cin >> grades[i];
+				if (levels[i] != "AP+" and levels[i] != "AP" and levels[i] != "H" and levels[i] != "CP" or grades[i] != "A" and grades[i] != "B" and grades[i] != "C" and grades[i] != "D" and grades[i] != "F") {
+					cout << "Invalid input.  Try again." << endl;
+				}
+			}
 		}
 		float total = 0;
 		float possible = 0;
@@ -75,26 +80,17 @@ int main () {
 			number_of_spaces++;
 			}
 		}
-		string levels_grades[number_of_spaces*2];
 		string levels[number_of_spaces];
 		string grades[number_of_spaces];
-		for (int i = 0; i < number_of_spaces*2;) {
+		for (int i = 0; i < number_of_spaces; i++) {
 			position2 = file_text.find(" ", position1);
-			levels_grades[i] = file_text.substr(position1, (position2 -position1));
+			levels[i] = file_text.substr(position1, (position2 -position1));
 			position1 = position2 + 1;
 			position2 = file_text.find("\n", position1);
-                        levels_grades[i+1] = file_text.substr(position1, (position2 -position1));
+                        grades[i] = file_text.substr(position1, (position2 -position1));
                         position1 = position2 + 1;
-			i = i + 2;
 		}
-		for (int i = 0; i < number_of_spaces; i++) {
-			levels[i] = levels_grades[i*2];
-		}
-		int x = 1;
-		for (int i = 0; i < number_of_spaces;i++) {
-			grades[i] = levels_grades[x];
-			x = x + 2;
-                }
+
 		float total = 0;
 		float possible = 0;
 		for (int i=0; i < number_of_spaces; i++) {
@@ -127,7 +123,8 @@ int main () {
 			}
 		}
 		float gpa = total/number_of_spaces;
+		cout << "The program will only work if the file is named gpa.txt.  If it is not, please change it now and run the program again." << endl;
 		cout << "Your gpa is " << gpa << "." << endl;
-	}	
+	}
 	return 0;
 }
